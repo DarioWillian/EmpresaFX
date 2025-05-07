@@ -23,14 +23,16 @@
       <Button fx:id="btApagar" layoutX="424.0" layoutY="147.0" mnemonicParsing="false" onAction="#Apagar" prefHeight="26.0" prefWidth="102.0" text="Apagar" />
       <Button fx:id="btEditar" layoutX="248.0" layoutY="147.0" mnemonicParsing="false" onAction="#Editar" prefHeight="26.0" prefWidth="102.0" text="Editar" />
       <TextField fx:id="txtCPF" layoutX="73.0" layoutY="93.0" />
-      <TextField fx:id="txtCargo" layoutX="364.0" layoutY="45.0" prefHeight="26.0" prefWidth="163.0" />
-      <TextField fx:id="txtNome" layoutX="73.0" layoutY="45.0" prefHeight="26.0" prefWidth="269.0" />
-      <TextField fx:id="txtSenha" layoutX="240.0" layoutY="93.0" />
+      <TextField fx:id="txtCargo" layoutX="282.0" layoutY="45.0" prefHeight="26.0" prefWidth="185.0" />
+      <TextField fx:id="txtNome" layoutX="73.0" layoutY="45.0" prefHeight="26.0" prefWidth="202.0" />
+      <TextField fx:id="txtSenha" layoutX="240.0" layoutY="93.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="txtNivel" layoutX="410.0" layoutY="93.0" prefHeight="26.0" prefWidth="116.0" />
       <Label layoutX="73.0" layoutY="28.0" text="Nome" />
       <Label layoutX="73.0" layoutY="75.0" text="CPF" />
-      <Label layoutX="364.0" layoutY="28.0" text="Cargo" />
+      <Label layoutX="284.0" layoutY="28.0" text="Cargo" />
       <Label layoutX="240.0" layoutY="75.0" text="Senha" />
       <Label layoutX="410.0" layoutY="75.0" text="Nível" />
+      <TextField fx:id="txtID" disable="true" editable="false" layoutX="475.0" layoutY="45.0" prefHeight="0.0" prefWidth="50.0" />
+      <Label layoutX="475.0" layoutY="27.0" prefHeight="18.0" prefWidth="32.0" text="Id" />
    </children>
 </AnchorPane>

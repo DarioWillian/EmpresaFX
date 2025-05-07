@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.Funcionario;
 
 public class controllerMain implements Initializable{
@@ -45,6 +46,8 @@ public class controllerMain implements Initializable{
 	@FXML
 	private TextField txtSenha;
 	
+	 @FXML
+	    private TextField txtID;
     @FXML
     private TableColumn<Funcionario, String> Cargo;
 
@@ -99,14 +102,55 @@ public class controllerMain implements Initializable{
 
     @FXML
     void Editar(ActionEvent event) {
+         
+    	
+    	//sai a mensagem de erro caso o ususario tente apertar no botao sem selecionar nenhum funcionario
+    	if(txtID.getText().equals("")) {
+    		Alert msg = new Alert(AlertType.ERROR);
+        	msg.setHeaderText("ERRO ");
+	    	msg.setContentText("Falha, Selecione o funcionario para editar");
+	    	msg.show();
+    		
+    	}else {
+    		
+    		Funcionario funcionario = new Funcionario();
+    		FuncionarioDao funcDao = new FuncionarioDao();
+    		Alert msg = new Alert(AlertType.CONFIRMATION);
+        	msg.setHeaderText("Voçe deseja realmente excluir o funcionario? ");
+        	
+            Optional<ButtonType> resultado = msg.showAndWait();
+	    	
+	    	if(resultado.isPresent() && resultado.get() == ButtonType.OK) {
+	    		funcDao.update(funcionario);
+	    		carregarTable();
+	    		
+	    		
+    		funcionario.setNome(txtNome.getText());
+    		funcionario.setCargo(txtCargo.getText());
+    		funcionario.setCpf(txtCPF.getText());
+    		funcionario.setNivel(txtNivel.getText());
+    		funcionario.setSenha(txtSenha.getText());
+    		funcionario.setId(txtID.getText());
+    		funcDao.update(funcionario);
+    		
+             carregarTable();
+            
+            txtNome.setText("");        	
+            txtCPF.setText("");        	
+            txtCargo.setText("");        	
+            txtNivel.setText("");        	
+            txtSenha.setText(""); 	
+    		txtID.setText("");
+    		
+    	}
+    	}	
 
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+    
+    
+    
+    
+    
+    
     }
 
     @FXML
@@ -134,7 +178,7 @@ public class controllerMain implements Initializable{
         	carregarTable();
             
             txtNome.setText("");        	
-            txtCargo.setText("");        	
+            txtCPF.setText("");        	
             txtCargo.setText("");        	
             txtNivel.setText("");        	
             txtSenha.setText(""); 	
@@ -165,15 +209,20 @@ public class controllerMain implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		carregarTable();
-	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	//duplo Clique pra sair as informacoes na tela automaticmente
+	tabelaFuncionarios.setOnMouseClicked((MouseEvent clique) -> {
+    	if(clique.getClickCount()== 2) {
+    		Funcionario funcionario = new Funcionario();
+    		int i = tabelaFuncionarios.getSelectionModel().getSelectedIndex();
+    		funcionario = tabelaFuncionarios.getItems().get(i);
+    		 txtNome.setText(funcionario.getNome()); 
+    		 txtCPF.setText(funcionario.getCpf()); 
+    		 txtCargo.setText(funcionario.getCargo()); 
+    		 txtNivel.setText(funcionario.getNivel()); 
+    		 txtSenha.setText(funcionario.getSenha()); 
+    		 txtID.setText(funcionario.getId());
+    	}
+    });  
+} 
     
 }
